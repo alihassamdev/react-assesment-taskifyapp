@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import './Signup.css';
+import './SignUp.css';
 import signUpPoster from '@/assets/signup-poster.png';
 import { generateId } from '@/utils/idGenerator';
 import { ENDPOINTS } from '@/config/apiConfig';
