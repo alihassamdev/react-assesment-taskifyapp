@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { ENDPOINTS } from '@/config/apiConfig';
 
-import './Signin.css';
+import './SignIn.css';
 
 import signInPoster from '@/assets/sigin-poster.png';
 
