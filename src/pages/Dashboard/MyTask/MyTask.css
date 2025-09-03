@@ -1,0 +1,242 @@
+.mytask-container {
+  display: flex;
+  gap: 24px;
+}
+
+/* Left Column */
+.left-column {
+  width: 423px;
+  padding: 19px 29px;
+  max-height: 837px;
+  overflow: hidden;
+}
+
+.section-title {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  margin-bottom: 4px;
+}
+
+.mytask-heading-underline {
+  border-bottom: 2px solid #f24e1e;
+  max-width: 31px;
+  margin-bottom: 18px;
+}
+
+/* Task Card */
+.task-card-container {
+  max-height: 100%;
+  overflow-y: auto;
+  padding-bottom: 40px;
+}
+
+/* Optional: Style scrollbar for better UX */
+.task-card-container::-webkit-scrollbar {
+  width: 0;
+}
+
+.task-card-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.task-card-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.task-card {
+  border: 1px solid #ccc;
+  border-radius: 14px;
+  padding: 8px 16px;
+  background-color: #f7f8fc;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  max-width: 700px;
+  margin-top: 0;
+  margin-bottom: 17px;
+}
+
+/* Flex row: icon left, content right */
+.task-content-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+/* Icon column */
+.task-icon {
+  flex-shrink: 0;
+}
+
+/* Content column */
+.task-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Top row */
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+}
+
+.task-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+}
+
+.task-menu {
+  font-size: 20px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+/* Middle row */
+.task-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-desc {
+  font-size: 14px;
+  color: #747474;
+  flex: 1;
+  margin-right: 12px;
+}
+
+.task-image img {
+  width: 88px;
+  height: 88px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* Bottom row */
+.task-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  line-height: 100%;
+}
+
+.detail-content .priority,
+.detail-content .status {
+  font-size: 12px;
+  line-height: 100%;
+}
+.detail-content .created {
+  font-size: 10px;
+  color: #a1a3ab;
+}
+
+.extreme {
+  color: #f21e1e;
+}
+.moderate {
+  color: #42ade2;
+}
+.low {
+  color: #05a301;
+}
+
+.not-started {
+  color: #f21e1e;
+}
+
+.in-progress {
+  color: #0225ff;
+}
+
+.in-completed {
+  color: #05a301;
+}
+
+.created {
+  color: #a1a3ab;
+}
+
+/* Right Column */
+.right-column {
+  flex: 1;
+  width: 511px;
+  padding: 16px 22px;
+}
+
+.task-detail-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.task-detail-header {
+  display: flex;
+  gap: 15px;
+  align-items: flex-end;
+}
+
+.detail-image {
+  width: 158px;
+  height: 158px;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+.detail-image img {
+  width: 100%;
+}
+.task-detail-header .detail-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.detail-title {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+.task-description {
+  margin-top: 19px;
+  font-size: 16px;
+  line-height: 180%;
+  color: #747474;
+}
+
+.task-description ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.task-description ul li {
+  margin-bottom: 6px;
+}
+
+/* Buttons */
+.task-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn {
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.btn.red {
+  background-color: #f24e1e;
+  color: white;
+}

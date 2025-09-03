@@ -10,7 +10,7 @@ const Signup = () => {
     const [form, setForm] = useState({
         firstName: '',
         lastName: '',
-        username: '',
+        userName: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -27,7 +27,7 @@ const Signup = () => {
     };
 
     const validateForm = () => {
-        const { firstName, lastName, username, email, password, confirmPassword } = form;
+        const { firstName, lastName, userName, email, password, confirmPassword } = form;
         const newErrors = {};
         let isValid = true;
 
@@ -41,11 +41,11 @@ const Signup = () => {
             isValid = false;
         }
 
-        if (!username.trim()) {
-            newErrors.username = 'Username is required';
+        if (!userName.trim()) {
+            newErrors.userName = 'Username is required';
             isValid = false;
-        } else if (username.length < 3) {
-            newErrors.username = 'Username must be at least 3 characters';
+        } else if (userName.length < 3) {
+            newErrors.userName = 'Username must be at least 3 characters';
             isValid = false;
         }
 
@@ -182,12 +182,12 @@ const Signup = () => {
                             </span>
                             <input
                                 type="text"
-                                name="username"
+                                name="userName"
                                 placeholder="Enter Username"
-                                value={form.username}
+                                value={form.userName}
                                 onChange={handleChange}
                             />
-                            {errors.username && <p className="field-error">{errors.username}</p>}
+                            {errors.userName && <p className="field-error">{errors.userName}</p>}
                         </div>
 
                         {/* Email */}

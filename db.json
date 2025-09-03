@@ -1,67 +1,12 @@
 {
   "users": [
     {
-      "id": "user_g5z7b1m6p",
-      "firstName": "Hassam",
-      "lastName": "Ali",
-      "username": "Hassamali",
-      "email": "hassamalidev@gmail.co",
-      "password": "12345678",
-      "confirmPassword": "12345678"
-    },
-    {
-      "id": "user_d2nl8ha2d",
-      "firstName": "Ali",
-      "lastName": "Hassam",
-      "username": "alihassam",
-      "email": "alihassam@gmail.com",
-      "password": "123456",
-      "confirmPassword": "123456"
-    },
-    {
-      "id": "user_jvfiyd2ia",
-      "firstName": "Hassam",
-      "lastName": "Ali",
-      "username": "hassamali",
-      "email": "abc@gmail.com",
-      "password": "123456",
-      "confirmPassword": "123456"
-    },
-    {
-      "id": "user_p8lfbj4cn",
-      "firstName": "test",
-      "lastName": "test",
-      "username": "test@gmail.com",
-      "email": "test@gmail.com",
-      "password": "test@gmail.com",
-      "confirmPassword": "test@gmail.com"
-    },
-    {
-      "id": "user_lrcjd12s4",
-      "firstName": "h",
-      "lastName": "a",
-      "username": "Hassam",
-      "email": "hassam.ali@studio93.io",
-      "password": "123456",
-      "confirmPassword": "123456"
-    },
-    {
-      "id": "user_p6jyhtt52",
-      "firstName": "Hass",
-      "lastName": "Hassam",
-      "username": "Hassam",
-      "email": "hassam.ali@studio93.com",
-      "password": "123456",
-      "confirmPassword": "123456"
-    },
-    {
-      "id": "user_dgwhcapkl",
-      "firstName": "test",
-      "lastName": "test",
-      "username": "Hassamali",
+      "firstName": "hassam1vgvh",
+      "lastName": "ali1ui",
+      "userName": "hassamali1sjbjkasbcbskhabkh b bn ",
       "email": "hassam.ali@studio93.co",
-      "password": "123456",
-      "confirmPassword": "123456"
+      "id": "user_66hhta1hb",
+      "password": "1234567"
     }
   ]
 }

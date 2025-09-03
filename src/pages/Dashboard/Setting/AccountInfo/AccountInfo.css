@@ -1,0 +1,137 @@
+.account-container {
+  padding: 18px 28px 92px;
+  width: 959px;
+  border-radius: 16px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border: 1px solid #a1a3aba1;
+  color: #000000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 54px;
+}
+
+.heading-title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+}
+
+.heading-underline {
+  border-bottom: 2px solid #f24e1e;
+  max-width: 161px;
+  margin-top: 5px;
+}
+
+.go-back {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  text-decoration: underline;
+  text-decoration-style: solid;
+}
+
+.user-info {
+  margin-bottom: 59px;
+}
+
+.user-info h3 {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 100%;
+  margin-bottom: 4px;
+}
+
+.user-info p {
+  font-size: 15px;
+}
+
+.form-wrapper {
+  width: 100%;
+  padding: 44px 36px;
+  border-radius: 12px;
+  border: 1px solid #a1a3ab;
+}
+
+.form-inner {
+  max-width: 511px;
+  margin: 0;
+}
+
+.form-inner label {
+  display: block;
+  margin: 16px 0 9px;
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.form-inner input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #a1a3ab;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border 0.2s ease;
+  min-height: 37px;
+}
+
+.form-inner input:focus {
+  border-color: #4b4f5f;
+  outline: none;
+}
+
+.form-inner input.error {
+  border-color: red;
+}
+
+.error-text {
+  margin-top: 2px;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  color: red;
+}
+
+.button-group {
+  margin-top: 32px;
+  display: flex;
+  gap: 5px;
+}
+
+.update-btn {
+  padding: 8px 24px;
+  border: none;
+  border-radius: 6px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  cursor: pointer;
+  background-color: #f24e1e;
+  color: #fff;
+  height: 34px;
+}
+
+.update-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.change-btn {
+  padding: 8px 19px;
+  border: none;
+  border-radius: 6px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  cursor: pointer;
+  background-color: #f24e1e;
+  color: #fff;
+  height: 34px;
+}

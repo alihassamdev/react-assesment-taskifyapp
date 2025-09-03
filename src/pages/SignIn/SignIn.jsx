@@ -62,6 +62,8 @@ const Signin = ({ onLogin }) => {
             const token = btoa(`${form.email}:${form.password}`);
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
+            localStorage.setItem('userId', user.id);
+
 
             onLogin();
             navigate('/dashboard');

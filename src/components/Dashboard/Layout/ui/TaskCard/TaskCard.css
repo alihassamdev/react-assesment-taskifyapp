@@ -1,0 +1,88 @@
+.task-card {
+  display: flex;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  background-color: #f8f8f8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.task-card.active {
+  border-color: #f24e1e;
+}
+
+.task-radio {
+  width: 16px;
+  height: 16px;
+  border: 2px solid red;
+  border-radius: 50%;
+  margin-top: 4px;
+}
+
+.task-radio.blue {
+  border-color: #2264e5;
+}
+
+.task-content {
+  flex: 1;
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-title {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.task-menu {
+  font-size: 20px;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.task-desc {
+  font-size: 13px;
+  color: #555;
+  margin: 6px 0;
+}
+
+.task-footer {
+  font-size: 12px;
+  color: #666;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.priority.extreme {
+  color: red;
+}
+
+.priority.moderate {
+  color: orange;
+}
+
+.status.not-started {
+  color: red;
+}
+
+.status.in-progress {
+  color: #2264e5;
+}
+
+.created {
+  color: #aaa;
+}
+
+.task-image img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+}
