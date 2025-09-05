@@ -1,0 +1,12 @@
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.hr {
+  width: 100%;
+  max-width: 1170px;
+  height: 1px;
+  opacity: 0.1;
+  background: #000;
+  margin: 0 auto;
+}

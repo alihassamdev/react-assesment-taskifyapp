@@ -1,0 +1,146 @@
+.flash-sales-section {
+  max-width: 1170px;
+  margin: 129px auto 60px;
+}
+
+.sale-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.sale-section-header .left-col {
+  display: flex;
+  align-items: center;
+  gap: 87px;
+}
+
+/* CountDown */
+.countdown {
+  display: flex;
+  gap: 17px;
+}
+
+.time-box {
+  text-align: center;
+}
+
+.time-box span {
+  display: block;
+}
+
+.label {
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  margin-bottom: 4px;
+}
+
+.value {
+  font-family: Inter;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 1.28px;
+}
+
+.separator {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff6767;
+  padding-top: 6px;
+}
+
+.view-products {
+  display: block;
+  margin: 60px auto 0;
+  padding: 16px 48px;
+  border-radius: 4px;
+  background: #ff9090;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.view-products:hover {
+  background: #ff6767;
+}
+
+/* ---------------------- */
+/* Tablet (max-width: 991px) */
+@media (max-width: 991px) {
+  .sale-section-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .sale-section-header .left-col {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .countdown {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .value {
+    font-size: 28px;
+    line-height: 28px;
+  }
+
+  .label {
+    font-size: 11px;
+  }
+
+  .view-products {
+    padding: 14px 36px;
+    font-size: 15px;
+  }
+}
+
+/* ---------------------- */
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .flash-sales-section {
+    margin: 80px 16px 40px;
+  }
+
+  .sale-section-header {
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .countdown {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .value {
+    font-size: 24px;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .products {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .view-products {
+    width: 100%;
+    max-width: 280px;
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}

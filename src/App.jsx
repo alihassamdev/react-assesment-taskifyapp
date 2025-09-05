@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
+
 import { SignUp, SignIn } from './pages'
 import { MainLayout } from './components/Dashboard/Layout/MainLayout/MainLayout';
 import Index from './pages/Dashboard/Index/Index';
@@ -7,6 +8,9 @@ import VitalTask from './pages/Dashboard/VitalTask/VitalTask';
 import MyTask from './pages/Dashboard/MyTask/MyTask';
 import AccountInfo from './pages/Dashboard/Setting/AccountInfo/AccountInfo';
 import ChangePassword from './pages/Dashboard/Setting/ChangePassword/ChangePassword';
+import AddTask from './pages/Dashboard/AddTask/AddTask';
+import Landing from './pages/Landing/Landing';
+import ViewTask from './pages/Dashboard/ViewTask/ViewTask';
 
 
 function App() {
@@ -23,9 +27,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={
-        isLoggedIn ? <Navigate to="/dashboard" /> : <Navigate to="/signin" />
-      } />
+
+      <Route path='/' element={<Landing />} />
+
       <Route path="/signin" element={
         isLoggedIn ? <Navigate to="/dashboard" /> : <SignIn onLogin={() => setIsLoggedIn(true)} />
       } />
@@ -38,6 +42,8 @@ function App() {
         <Route index element={<Index />} />
         <Route path='vital-task' element={<VitalTask />} />
         <Route path='my-task' element={<MyTask />} />
+        <Route path='add-task' element={<AddTask />} />
+        <Route path='view-task/:taskId' element={<ViewTask />} />
         <Route path='setting' element={<AccountInfo />} />
         <Route path='change-password' element={<ChangePassword />} />
       </Route>

@@ -1,182 +1,215 @@
-import React from "react";
+import React, { useState } from "react";
 import { useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
 
 import './Index.css'
+import AddTask from "../AddTask/AddTask";
+import TaskCard from "@/components/Dashboard/Layout/ui/TaskCard/TaskCard";
+
+import avatar1 from '@/assets/avatar/avtar-1.png'
+import avatar2 from '@/assets/avatar/avtar-2.png'
+import avatar3 from '@/assets/avatar/avtar-3.png'
+import avatar4 from '@/assets/avatar/avtar-4.png'
+import avatar5 from '@/assets/avatar/avtar-5.png'
 
 const Index = () => {
-    const { user } = useOutletContext();
+    const { user, tasks, searchResults } = useOutletContext();
+
+    const [showAddTask, setShowAddTask] = useState(false);
+
+    const today = new Date().toISOString().slice(0, 10); // e.g. "2025-09-05"
+    const todayTasks = tasks.filter(task => task.date === today);
+
+    const completedTasks = tasks.filter(task => task.status === "completed");
+
+    const navigate = useNavigate();
+
+    // caluculate the task percentage
+    const totalTasks = tasks.length;
+
+    const completedCount = tasks.filter(task => task.status === "completed").length;
+    const inProgressCount = tasks.filter(task => task.status === "inprogress").length;
+    const notStartedCount = tasks.filter(task => task.status === "notstarted").length;
+
+    const completedRate = totalTasks === 0 ? 0 : Math.round((completedCount / totalTasks) * 100);
+    const inProgressRate = totalTasks === 0 ? 0 : Math.round((inProgressCount / totalTasks) * 100);
+    const notStartedRate = totalTasks === 0 ? 0 : Math.round((notStartedCount / totalTasks) * 100);
+
 
     return (
         <div className="dashboard-content-section">
             {/* Welcome Header at the top */}
             <div className="welcome-header">
-                <h1>
-                    Welcome back, {user.firstName} <span className="wave-emoji">👋</span>
+                <h1 className="welcome-text">
+                    Welcome back, {user.firstName}
+                    <span className="wave-emoji"><svg width="43" height="41" viewBox="0 0 43 41" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.97058 32.1806C9.61701 32.1099 9.33416 32.0392 8.98059 31.8978C8.62703 31.7564 8.34417 31.6856 8.06132 31.5442C7.4249 31.2614 6.85919 30.9078 6.29349 30.4835C5.16207 29.7057 4.2428 28.645 3.53567 27.3721C2.82853 26.17 2.40425 24.7557 2.33354 23.4122C2.26283 22.7051 2.33354 22.0686 2.40425 21.3615C2.47497 21.0079 2.54568 20.7251 2.61639 20.3715C2.68711 20.0179 2.82853 19.7351 2.89925 19.3815L2.96996 20.3715C2.96996 20.7251 3.04067 21.0079 3.11139 21.3615C3.1821 21.9979 3.32353 22.6343 3.46495 23.2C3.74781 24.4022 4.17209 25.5336 4.80851 26.5943C5.44493 27.655 6.15206 28.645 7.07133 29.5642C7.49561 29.9885 7.99061 30.4128 8.4856 30.8371C8.69774 31.0492 8.98059 31.2614 9.26345 31.4735L9.97058 32.1806ZM9.75844 34.7263C9.5463 34.8677 9.26345 34.9385 8.98059 35.0092C8.69774 35.0799 8.4856 35.1506 8.20275 35.1506C7.70775 35.2213 7.14205 35.292 6.57634 35.2213C5.51564 35.1506 4.38423 34.8677 3.46495 34.3728C2.47497 33.8778 1.62641 33.0999 1.0607 32.1806C0.777847 31.7564 0.494993 31.2614 0.282853 30.7664C0.21214 30.5542 0.141427 30.2714 0.0707133 29.9885C0.0707133 29.7764 0 29.5642 0 29.2814C0.21214 29.4935 0.353567 29.7057 0.494993 29.8471C0.707133 30.0592 0.84856 30.2714 0.989987 30.4128C1.34355 30.7664 1.62641 31.1199 1.97997 31.4028C2.68711 32.0392 3.39424 32.6049 4.2428 33.0292C5.02065 33.4535 5.93992 33.807 6.78848 34.0899C7.21276 34.2313 7.70775 34.302 8.20275 34.4435C8.41489 34.5142 8.69774 34.5142 8.90988 34.5849C9.26345 34.6556 9.47559 34.6556 9.75844 34.7263ZM25.7397 0.359636C26.0932 0.430349 26.3761 0.571776 26.7296 0.713202C27.0832 0.854629 27.3661 0.996056 27.6489 1.13748C28.2853 1.49105 28.851 1.84462 29.4167 2.2689C30.5482 3.11746 31.4674 4.24887 32.1039 5.52171C32.7403 6.79455 33.0938 8.20882 33.0938 9.55237C33.0938 10.2595 33.0231 10.8959 32.8817 11.6031C32.811 11.9566 32.7403 12.2395 32.5988 12.593C32.4574 12.9466 32.3867 13.2295 32.2453 13.5123L32.1746 12.5223C32.1746 12.1688 32.1746 11.8859 32.1039 11.5323L31.8917 9.62308C31.6796 8.42096 31.2553 7.21883 30.6896 6.08742C30.1239 4.956 29.4167 3.96602 28.5682 3.04674C28.1439 2.55175 27.6489 2.12747 27.2246 1.63248C27.0125 1.42034 26.7296 1.2082 26.4468 0.996056L25.7397 0.359636ZM31.8917 0.0767822C32.1746 0.147496 32.3867 0.218209 32.5988 0.359636C32.811 0.430349 33.0938 0.571776 33.306 0.713202C33.7303 0.996056 34.1545 1.27891 34.5788 1.63248C35.3567 2.33961 35.9931 3.18817 36.3467 4.17816C36.7709 5.16814 36.9124 6.22884 36.7709 7.28954C36.7002 7.78454 36.5588 8.27953 36.4174 8.77452C36.3467 8.98666 36.2052 9.26952 36.1345 9.48166C35.9931 9.6938 35.9224 9.90594 35.7102 10.1181V9.41094V8.70381C35.7102 8.20882 35.6395 7.78454 35.6395 7.36026C35.4981 6.44098 35.3567 5.59242 35.0031 4.81458C34.6495 3.96602 34.2253 3.25888 33.7303 2.48104C33.4474 2.12747 33.1646 1.70319 32.8817 1.34962C32.7403 1.13748 32.5988 0.996056 32.3867 0.783916C32.2453 0.430349 32.0331 0.218209 31.8917 0.0767822Z" fill="#42ADE2" />
+                        <path d="M5.65709 10.6131C4.24282 11.2495 3.74783 12.9466 4.38425 14.3609L13.2941 32.9585L18.2441 30.6249L9.33418 11.9566C8.69776 10.5423 7.07135 9.90592 5.65709 10.6131ZM29.0632 25.3921L34.296 22.9172L24.1133 1.70317C23.4061 0.288908 21.709 -0.347512 20.224 0.359621C18.8098 1.06675 18.1733 2.76387 18.8805 4.24885L29.0632 25.3921Z" fill="#FFDD67" />
+                        <path d="M20.2949 0.28888C20.1535 0.359594 20.012 0.430307 19.8706 0.571733C21.2142 0.218167 22.6284 0.854587 23.2648 2.12743L33.4476 23.3414L34.3668 22.9172L24.1841 1.70315C23.477 0.218167 21.7799 -0.418253 20.2949 0.28888Z" fill="#EBA352" />
+                        <path d="M18.2438 30.5542L23.6887 27.9378L13.2939 6.2995C12.5867 4.81452 10.7482 4.10739 9.26321 4.81452C7.77823 5.52165 7.14181 7.3602 7.84894 8.84518L18.2438 30.5542Z" fill="#FFDD67" />
+                        <path d="M9.26364 4.88529C9.12221 4.956 8.98078 5.02672 8.83936 5.16814C10.1829 4.81458 11.7386 5.451 12.375 6.79455L18.8099 20.3008L20.3656 21.2201L13.2943 6.37027C12.5872 4.81458 10.8193 4.17816 9.26364 4.88529Z" fill="#EBA352" />
+                        <path d="M22.8405 26.2407L28.2854 23.6243L17.8905 1.98599C17.1834 0.501011 15.3449 -0.206123 13.8599 0.571724C12.3749 1.27886 11.7385 3.1174 12.4456 4.60238L22.8405 26.2407Z" fill="#FFDD67" />
+                        <path d="M13.8599 0.501013C13.7185 0.571727 13.5771 0.713153 13.4357 0.783866C14.7792 0.4303 16.3349 1.06672 16.9713 2.41027L24.2548 17.6844L25.8105 18.6036L17.8906 1.98599C17.1835 0.4303 15.3449 -0.20612 13.8599 0.501013ZM5.65719 10.613C5.51576 10.6837 5.37434 10.7544 5.23291 10.8959C6.50575 10.5423 7.8493 11.1787 8.41501 12.4516L13.7185 23.5536L15.2742 24.4728L9.33428 12.0273C8.69786 10.5423 7.07146 9.90589 5.65719 10.613Z" fill="#EBA352" />
+                        <path d="M41.5794 8.49169C39.6701 7.00671 36.5587 8.63312 35.003 13.7245C33.9423 17.2601 33.8009 18.3208 31.5381 19.3815L30.2652 16.7652C30.2652 16.7652 10.1827 26.4529 10.9605 28.0086C10.9605 28.0086 13.3648 35.5042 17.4661 38.9691C23.5475 44.2019 37.7609 38.6156 38.3973 25.1093C38.7508 17.2601 43.6301 10.1181 41.5794 8.49169Z" fill="#FFDD67" />
+                        <path d="M41.5795 8.49158C41.2259 8.20872 40.8016 8.0673 40.3773 7.99658C40.4481 8.0673 40.5895 8.0673 40.6602 8.13801C42.7816 9.76442 40.5895 13.5122 39.3874 16.9065C38.3974 19.5936 37.5488 22.3514 37.6902 25.0385C38.2559 36.7769 26.4468 42.3633 19.3755 40.2419C26.3054 43.1411 39.1752 37.6255 38.6095 25.3921C38.4681 22.705 39.2459 20.0886 40.3066 17.26C41.438 13.8658 43.6302 10.118 41.5795 8.49158Z" fill="#EBA352" />
+                        <path d="M32.1748 19.0985C27.7905 19.5935 21.3556 25.887 25.8813 32.7462C22.5578 25.8163 28.0027 21.1492 31.4676 19.5228C31.8212 19.2399 32.1748 19.0985 32.1748 19.0985Z" fill="#EBA352" />
+                    </svg>
+                    </span>
                 </h1>
-                <div className="user-avatars">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User 1" />
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User 2" />
-                    <img src="https://randomuser.me/api/portraits/men/56.jpg" alt="User 3" />
-                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User 4" />
-                    <div className="more-users">+4</div>
+                <div className="user-invitation-wrapper">
+                    <div className="user-avatars">
+                        <img src={avatar1} alt="User 1" />
+                        <img src={avatar2} alt="User 2" />
+                        <img src={avatar3} alt="User 3" />
+                        <img src={avatar4} alt="User 4" />
+                        <div className="avatar" style={{ backgroundImage: `url(${avatar5})` }}>
+                            <span className="avatar-text">+4</span>
+                        </div>
+                    </div>
+                    <button className="invite-btn">
+                        <span className="invite-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="12" viewBox="0 0 20 12" fill="none">
+                                <path d="M15.351 10.1276V11.7398H5.67752V10.1276C5.67752 10.1276 5.67752 6.90308 10.5143 6.90308C15.351 6.90308 15.351 10.1276 15.351 10.1276ZM12.9326 2.87247C12.9326 2.39416 12.7908 1.9266 12.5251 1.5289C12.2593 1.1312 11.8816 0.82123 11.4397 0.63819C10.9978 0.455149 10.5116 0.407258 10.0425 0.500571C9.57334 0.593884 9.14243 0.824211 8.80421 1.16243C8.466 1.50064 8.23567 1.93155 8.14236 2.40067C8.04905 2.86979 8.09694 3.35604 8.27998 3.79794C8.46302 4.23984 8.77299 4.61753 9.17069 4.88327C9.56838 5.149 10.036 5.29084 10.5143 5.29084C11.1556 5.29084 11.7708 5.03605 12.2243 4.58251C12.6778 4.12898 12.9326 3.51386 12.9326 2.87247ZM15.5122 6.95145C15.9529 7.35798 16.3081 7.84821 16.5573 8.39353C16.8064 8.93885 16.9444 9.52833 16.9632 10.1276V11.7398H19.3816V10.1276C19.3816 10.1276 19.3816 7.34645 15.5122 6.95145ZM14.5449 0.454102C14.3013 0.454248 14.0593 0.492323 13.8274 0.56696C14.299 1.24327 14.5519 2.04795 14.5519 2.87247C14.5519 3.69699 14.299 4.50167 13.8274 5.17798C14.0593 5.25262 14.3013 5.29069 14.5449 5.29084C15.1863 5.29084 15.8014 5.03605 16.2549 4.58251C16.7084 4.12898 16.9632 3.51386 16.9632 2.87247C16.9632 2.23108 16.7084 1.61596 16.2549 1.16243C15.8014 0.708894 15.1863 0.454102 14.5449 0.454102ZM6.48365 4.48471H4.06528V2.06635H2.45304V4.48471H0.034668V6.09696H2.45304V8.51533H4.06528V6.09696H6.48365V4.48471Z" fill="#FF6767" />
+                            </svg>
+                        </span>
+                        Invite
+                    </button>
                 </div>
-                <button className="invite-btn">
-                    <span className="invite-icon">➕</span> Invite
-                </button>
             </div>
 
             <div className="content">
                 {/* Left side - To-Do list */}
                 <div className="left">
-                    <div className="card to-do-card">
+                    <div className=" to-do-card">
                         <div className="card-header">
-                            <h3>To-Do</h3>
-                            <button className="add-task-btn">+ Add task</button>
-                        </div>
-                        <small>20 June • Today</small>
-
-
-                        {/* Task 1 */}
-                        <div className="task-card">
-                            <div className="task-status-circle red"></div>
-                            <div className="task-content">
-                                <h4>Attend Nischal’s Birthday Party</h4>
-                                <p>
-                                    Buy gifts on the way and pick up cake from the bakery.
-                                    (6 PM | Fresh Elements).....
-                                </p>
-                                <div className="task-meta">
-                                    <span>
-                                        Priority: <strong>Moderate</strong>
-                                    </span>
-                                    <span>
-                                        Status: <strong className="status-notstarted">Not Started</strong>
-                                    </span>
-                                    <span>Created on: 20/06/2023</span>
-                                </div>
+                            <div className="todo-card-title">
+                                <span><svg width="29" height="33" viewBox="0 0 29 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M23.8511 26.2698L22.4285 25.4499V22.6013C22.4285 22.5211 22.3965 22.4442 22.3397 22.3875C22.2829 22.3308 22.2059 22.299 22.1255 22.299C22.0452 22.299 21.9681 22.3308 21.9113 22.3875C21.8545 22.4442 21.8226 22.5211 21.8226 22.6013V25.6246C21.8226 25.6777 21.8366 25.7298 21.8631 25.7758C21.8897 25.8218 21.928 25.8599 21.974 25.8865L23.5482 26.7935C23.5825 26.8135 23.6205 26.8266 23.66 26.8319C23.6994 26.8372 23.7395 26.8346 23.778 26.8243C23.8164 26.814 23.8524 26.7962 23.8839 26.7719C23.9154 26.7476 23.9418 26.7173 23.9614 26.6828C24.0016 26.6134 24.0126 26.531 23.9919 26.4535C23.9713 26.3761 23.9206 26.31 23.8511 26.2698ZM22.1255 19.578C18.7791 19.578 16.0664 22.2851 16.0664 25.6246C16.0664 28.9642 18.7791 31.6713 22.1255 31.6713C25.4701 31.6676 28.181 28.9624 28.1846 25.6246C28.1846 22.2851 25.4719 19.578 22.1255 19.578ZM22.1255 31.0666C21.4094 31.0666 20.7003 30.9259 20.0387 30.6524C19.3771 30.3789 18.7759 29.978 18.2695 29.4727C17.7631 28.9674 17.3615 28.3674 17.0874 27.7072C16.8134 27.0469 16.6723 26.3393 16.6723 25.6246C16.6723 24.91 16.8134 24.2023 17.0874 23.5421C17.3615 22.8818 17.7631 22.2819 18.2695 21.7766C18.7759 21.2712 19.3771 20.8704 20.0387 20.5969C20.7003 20.3234 21.4094 20.1827 22.1255 20.1827C23.5713 20.1843 24.9574 20.7581 25.9797 21.7784C27.0021 22.7986 27.5771 24.1818 27.5787 25.6246C27.5787 27.0679 27.0042 28.4521 25.9815 29.4727C24.9588 30.4933 23.5718 31.0666 22.1255 31.0666Z" fill="#888888" stroke="#A1A3AB" />
+                                    <path d="M15.8909 2.39129H13.5073V1.59419C13.506 1.17178 13.3382 0.767019 13.0404 0.468322C12.7427 0.169626 12.3392 0.00126159 11.9182 0H5.56182C5.14075 0.00126159 4.73729 0.169626 4.43955 0.468322C4.14181 0.767019 3.97398 1.17178 3.97273 1.59419V2.39129H1.58909C1.16802 2.39255 0.764563 2.56092 0.466823 2.85961C0.169083 3.15831 0.00125755 3.56307 0 3.98549V20.7245C0.00125755 21.1469 0.169083 21.5517 0.466823 21.8504C0.764563 22.1491 1.16802 22.3175 1.58909 22.3187H8.74V20.7245H1.58909V3.98549H3.97273V6.37678H13.5073V3.98549H15.8909V12.7536H17.48V3.98549C17.4787 3.56307 17.3109 3.15831 17.0132 2.85961C16.7154 2.56092 16.312 2.39255 15.8909 2.39129ZM11.9182 4.78258H5.56182V1.59419H11.9182V4.78258Z" fill="#A1A3AB" />
+                                </svg>
+                                </span>
+                                <h3>To-Do</h3>
                             </div>
-                            <img
-                                src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=64&q=80"
-                                alt="Birthday"
-                            />
+                            <button className="add-task-btn" onClick={() => setShowAddTask(true)}><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15" fill="none">
+                                <path d="M12.0595 8.19048H8.19048V12.0595C8.19048 12.2648 8.10895 12.4616 7.96383 12.6067C7.81871 12.7518 7.62189 12.8333 7.41667 12.8333C7.21144 12.8333 7.01462 12.7518 6.8695 12.6067C6.72438 12.4616 6.64286 12.2648 6.64286 12.0595V8.19048H2.77381C2.56858 8.19048 2.37176 8.10895 2.22664 7.96383C2.08153 7.81872 2 7.62189 2 7.41667C2 7.21144 2.08153 7.01462 2.22664 6.8695C2.37176 6.72438 2.56858 6.64286 2.77381 6.64286H6.64286V2.77381C6.64286 2.56858 6.72438 2.37176 6.8695 2.22664C7.01462 2.08153 7.21144 2 7.41667 2C7.62189 2 7.81871 2.08153 7.96383 2.22664C8.10895 2.37176 8.19048 2.56858 8.19048 2.77381V6.64286H12.0595C12.2648 6.64286 12.4616 6.72438 12.6067 6.8695C12.7518 7.01462 12.8333 7.21144 12.8333 7.41667C12.8333 7.62189 12.7518 7.81872 12.6067 7.96383C12.4616 8.10895 12.2648 8.19048 12.0595 8.19048Z" fill="#F24E1E" />
+                            </svg> Add task</button>
+                        </div>
+                        <small><span className="todo-date"> {new Date().toLocaleDateString('en-GB', {
+                            day: 'numeric',
+                            month: 'long'
+                        })}</span> • Today</small>
+
+                        <div className="task-card-container">
+                            {(searchResults ?? (todayTasks.length > 0 ? todayTasks : tasks)).map(task => (
+                                <TaskCard key={task.id} task={task} onClick={(task) => navigate(`/dashboard/view-task/${task.id}`)} />
+                            ))}
                         </div>
 
-                        {/* Task 2 */}
-                        <div className="task-card">
-                            <div className="task-status-circle blue"></div>
-                            <div className="task-content">
-                                <h4>Landing Page Design for TravelDays</h4>
-                                <p>
-                                    Get the work done by EOD and discuss with client before leaving.
-                                    (4 PM | Meeting Room)
-                                </p>
-                                <div className="task-meta">
-                                    <span>
-                                        Priority: <strong>Moderate</strong>
-                                    </span>
-                                    <span>
-                                        Status: <strong className="status-inprogress">In Progress</strong>
-                                    </span>
-                                    <span>Created on: 20/06/2023</span>
-                                </div>
-                            </div>
-                            <img
-                                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=64&q=80"
-                                alt="Landing Page"
-                            />
-                        </div>
-
-                        {/* Task 3 */}
-                        <div className="task-card">
-                            <div className="task-status-circle blue"></div>
-                            <div className="task-content">
-                                <h4>Presentation on Final Product</h4>
-                                <p>
-                                    Make sure everything is functioning and all the necessities are
-                                    properly met. Prepare the team and get the documents ready.
-                                </p>
-                                <div className="task-meta">
-                                    <span>
-                                        Priority: <strong>Moderate</strong>
-                                    </span>
-                                    <span>
-                                        Status: <strong className="status-inprogress">In Progress</strong>
-                                    </span>
-                                    <span>Created on: 19/08/2023</span>
-                                </div>
-                            </div>
-                            <img
-                                src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=64&q=80"
-                                alt="Presentation"
-                            />
-                        </div>
                     </div>
                 </div>
 
                 {/* Right side */}
                 <div className="right">
                     {/* Task Status with circular progress bars */}
-                    <div className="card task-status-card">
-                        <h3>Task Status</h3>
-                        <div className="progress-wrapper">
-                            <div className="progress-circle green" data-percent="84">
-                                <div className="progress-text">84%</div>
-                            </div>
-                            <div className="progress-circle blue" data-percent="46">
-                                <div className="progress-text">46%</div>
-                            </div>
-                            <div className="progress-circle red" data-percent="13">
-                                <div className="progress-text">13%</div>
-                            </div>
+                    <div className="task-status-card">
+                        <div className="completed-task-title">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23" fill="none">
+                                <path d="M15.64 20.0776L13.2572 17.669L11.96 18.9802L15.64 22.7L23 15.2604L21.7028 13.9492L15.64 20.0776Z" fill="#A1A3AB" />
+                                <path d="M15.8909 2.39129H13.5073V1.59419C13.506 1.17178 13.3382 0.767019 13.0404 0.468322C12.7427 0.169626 12.3392 0.00126159 11.9182 0H5.56182C5.14075 0.00126159 4.73729 0.169626 4.43955 0.468322C4.14181 0.767019 3.97398 1.17178 3.97273 1.59419V2.39129H1.58909C1.16802 2.39255 0.764563 2.56092 0.466823 2.85961C0.169083 3.15831 0.00125755 3.56307 0 3.98549V20.7245C0.00125755 21.1469 0.169083 21.5517 0.466823 21.8504C0.764563 22.1491 1.16802 22.3175 1.58909 22.3187H8.74V20.7245H1.58909V3.98549H3.97273V6.37678H13.5073V3.98549H15.8909V12.7536H17.48V3.98549C17.4787 3.56307 17.3109 3.15831 17.0132 2.85961C16.7154 2.56092 16.312 2.39255 15.8909 2.39129ZM11.9182 4.78258H5.56182V1.59419H11.9182V4.78258Z" fill="#A1A3AB" />
+                            </svg>
+                            </span>
+                            <h3>Task Status</h3>
                         </div>
-                        <div className="progress-labels">
-                            <span>
-                                <span className="dot green-dot"></span> Completed
-                            </span>
-                            <span>
-                                <span className="dot blue-dot"></span> In Progress
-                            </span>
-                            <span>
-                                <span className="dot red-dot"></span> Not Started
-                            </span>
+                        <div className="task-status-circles-container">
+                            {/* Completed */}
+                            <div className="status-circle">
+                                <CircularProgressbar
+                                    value={completedRate}
+                                    text={`${completedRate}%`}
+                                    styles={buildStyles({
+                                        pathColor: '#05A301',
+                                        textColor: '#000',
+                                        trailColor: '#d6d6d6',
+                                    })}
+                                />
+                                <p><span className="dot" style={{ backgroundColor: '#05A301' }}></span> Completed</p>
+                            </div>
+
+                            {/* In Progress */}
+                            <div className="status-circle">
+                                <CircularProgressbar
+                                    value={inProgressRate}
+                                    text={`${inProgressRate}%`}
+                                    styles={buildStyles({
+                                        pathColor: '#0225FF',
+                                        textColor: '#000',
+                                        trailColor: '#d6d6d6',
+                                    })}
+                                />
+                                <p><span className="dot" style={{ backgroundColor: '#0225FF' }}></span> In Progress</p>
+                            </div>
+
+                            {/* Not Started */}
+                            <div className="status-circle">
+                                <CircularProgressbar
+                                    value={notStartedRate}
+                                    text={`${notStartedRate}%`}
+                                    styles={buildStyles({
+                                        pathColor: '#F21E1E',
+                                        textColor: '#000',
+                                        trailColor: '#d6d6d6',
+                                    })}
+                                />
+                                <p><span className="dot" style={{ backgroundColor: '#F21E1E' }}></span> Not Started</p>
+                            </div>
                         </div>
                     </div>
 
                     {/* Completed Task */}
                     <div className="card completed-task-card">
-                        <h3>Completed Task</h3>
-
-                        <div className="completed-task-card-item">
-                            <div className="task-status-circle green"></div>
-                            <div className="completed-task-content">
-                                <h4>Walk the dog</h4>
-                                <p>Take the dog to the park and bring treats as well.</p>
-                                <span className="status-completed">Status: Completed</span>
-                                <small>Completed 2 days ago.</small>
-                            </div>
-                            <img
-                                src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=64&q=80"
-                                alt="Dog"
-                            />
+                        <div className="completed-task-title">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="21" height="24" viewBox="0 0 21 24" fill="none">
+                                <path d="M2.33333 24H18.6667C19.9535 24 21 22.9236 21 21.6V3.6C21 2.2764 19.9535 1.2 18.6667 1.2H16.3333C16.3333 0.88174 16.2104 0.576515 15.9916 0.351472C15.7728 0.126428 15.4761 0 15.1667 0H5.83333C5.52391 0 5.22717 0.126428 5.00838 0.351472C4.78958 0.576515 4.66667 0.88174 4.66667 1.2H2.33333C1.0465 1.2 0 2.2764 0 3.6V21.6C0 22.9236 1.0465 24 2.33333 24ZM2.33333 3.6H4.66667V6H16.3333V3.6H18.6667V21.6H2.33333V3.6Z" fill="#A1A3AB" />
+                                <path d="M9.68093 14.1479L7.62296 11.7144L6 13.6335L9.68093 17.9861L15.6574 10.9191L14.0345 9L9.68093 14.1479Z" fill="#A1A3AB" />
+                            </svg>
+                            </span>
+                            <h3>Completed Tasks</h3>
                         </div>
+                        <div className="completed-task-card-wrapper">
+                            {completedTasks.length === 0 ? (
+                                <p className="no-completed">No completed tasks yet.</p>
+                            ) : (
+                                completedTasks.map(task => (
+                                    < div className="completed-task-card-item" key={task.id} onClick={() => navigate(`/dashboard/view-task/${task.id}`)}>
+                                        {console.log(task.id)}
 
-                        <div className="completed-task-card-item">
-                            <div className="task-status-circle green"></div>
-                            <div className="completed-task-content">
-                                <h4>Conduct meeting</h4>
-                                <p>Meet with the client and finalize requirements.</p>
-                                <span className="status-completed">Status: Completed</span>
-                                <small>Completed 2 days ago.</small>
-                            </div>
-                            <img
-                                src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=64&q=80"
-                                alt="Meeting"
-                            />
+                                        <div className="task-status-circle green"></div>
+                                        <div className="completed-task-content">
+                                            <h4>{task.title}</h4>
+                                            <p>{task.description}</p>
+                                            <span className="status-completed">Status: Completed</span>
+                                            <small>Completed on: {task.date}</small>
+                                        </div>
+                                        <img src={task.image} alt={task.title} />
+                                    </div>
+                                ))
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            {/* AddTask Modal  */}
+            {
+                showAddTask && (
+                    <AddTask onClose={() => setShowAddTask(false)} />
+                )
+            }
+
+        </div >
     );
 };
 

@@ -101,8 +101,10 @@
   padding: 9px 0 18px;
 }
 
-.terms input {
-  margin-right: 26px;
+.terms label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .terms input[type="checkbox"] {
@@ -208,7 +210,7 @@
 
   .input-group input {
     padding: 16px 16px 16px 60px;
-    font-size: 15px;
+    font-size: 16px;
     min-height: 50px;
   }
 

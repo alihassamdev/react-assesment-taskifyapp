@@ -13,7 +13,8 @@ const Signup = () => {
         userName: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        consent: false
     });
 
     const [errors, setErrors] = useState({});
@@ -23,8 +24,10 @@ const Signup = () => {
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        const { name, type, value, checked } = e.target;
+        setForm({ ...form, [name]: type === 'checkbox' ? checked : value });
     };
+
 
     const validateForm = () => {
         const { firstName, lastName, userName, email, password, confirmPassword } = form;
@@ -242,8 +245,14 @@ const Signup = () => {
 
                         {/* Terms & Conditions */}
                         <div className="terms">
-                            <input type="checkbox" required />
-                            <label>I agree to all terms</label>
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="consent"
+                                    checked={form.consent}
+                                    onChange={handleChange} required />
+                                I agree to all terms
+                            </label>
                         </div>
 
                         <button type="submit" className="register-button" disabled={loading}>

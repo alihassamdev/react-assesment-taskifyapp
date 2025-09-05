@@ -1,0 +1,337 @@
+/* === Modal Overlay === */
+.addtask-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* === Modal Box === */
+.modal-box {
+  width: 918px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  padding: 46px 62px 50px;
+}
+
+/* === Header === */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 39px;
+}
+
+.addtask-heading-title {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+.addtask-heading-underline {
+  border-bottom: 2px solid #f24e1e;
+  width: 96px;
+  margin-top: 3px;
+}
+
+.addtask-go-back {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  text-decoration: underline;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* === Form === */
+.addtask-modal .form-wrapper {
+  border: 1px solid #a1a3ab;
+  border-radius: 3px;
+  padding: 14px 17px 14px 16px;
+}
+
+.addtask-modal .form-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+}
+
+.addtask-modal .form-left {
+  flex: 1 1 511px;
+  max-width: 511px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+.addtask-modal .form-right {
+  flex: 1 1 214px;
+  max-width: 214px;
+}
+
+.addtask-modal label {
+  font-family: Montserrat;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 100%;
+  margin-bottom: 9px;
+  display: block;
+}
+
+.addtask-modal input[type="text"],
+input[type="date"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #a1a3ab;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.addtask-modal .addtask-desc {
+  margin-top: 17px;
+  display: block;
+}
+.addtask-modal textarea {
+  resize: vertical;
+  min-height: 205px;
+  margin-bottom: 0;
+}
+
+/* === Priority === */
+.addtask-modal .priority-group {
+  display: flex;
+  gap: 53px;
+  align-items: center;
+}
+
+.priority-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.priority-option {
+  display: flex;
+  align-items: center;
+}
+
+.priority-text {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 100%;
+  color: #a1a3ab;
+  margin-right: 10px;
+}
+.addtask-modal .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 7px;
+}
+
+/* === Upload === */
+.addtask-modal .upload-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: #000;
+  margin-bottom: 9px;
+}
+
+.addtask-modal .upload-box {
+  border: 1px solid #a1a3ab;
+  border-radius: 8px;
+  padding: 23px 16px;
+  text-align: center;
+  width: 100%;
+  height: 205px;
+  max-width: 214px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addtask-modal .upload-icon {
+  width: 62px;
+  height: 57px;
+  background-image: url("/src/assets/uploadimg.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 24px;
+}
+
+.addtask-modal .upload-box p {
+  font-family: Montserrat;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 100%;
+  color: #a1a3ab;
+}
+
+.addtask-modal .upload-box span {
+  font-family: Montserrat;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 100%;
+  color: #a1a3ab;
+}
+
+.addtask-modal .browse-btn {
+  display: inline-block;
+  margin-top: 11px;
+  padding: 6px 12px;
+  font-size: 13px;
+  border: 1px solid #a1a3ab;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 100%;
+  color: #a1a3ab;
+}
+
+/* === Button Group === */
+.addtask-modal .button-group {
+  text-align: left;
+  margin-top: 34px;
+}
+
+.addtask-modal .done-btn {
+  background: #f24e1e;
+  color: white;
+  padding: 8px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* === Responsive Styles === */
+
+/* For tablets (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .modal-box {
+    width: 90%;
+    padding: 36px 40px 40px;
+  }
+
+  .addtask-modal .form-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .addtask-modal .form-left,
+  .addtask-modal .form-right {
+    max-width: 100%;
+    flex: 1 1 100%;
+  }
+
+  .addtask-modal .upload-box {
+    max-width: 100%;
+    height: auto;
+    padding: 24px;
+  }
+}
+
+/* For mobile (max-width: 768px) */
+@media (max-width: 768px) {
+  .modal-box {
+    width: 94%;
+    padding: 30px 24px 36px;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .addtask-heading-title {
+    font-size: 15px;
+  }
+
+  .addtask-heading-underline {
+    width: 72px;
+  }
+
+  .addtask-go-back {
+    font-size: 13px;
+  }
+
+  .addtask-modal label {
+    font-size: 13px;
+  }
+
+  .addtask-modal input[type="text"],
+  input[type="date"],
+  textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .addtask-modal textarea {
+    min-height: 160px;
+  }
+
+  .addtask-modal .priority-group {
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .priority-label {
+    font-size: 13px;
+  }
+
+  .priority-text {
+    font-size: 12px;
+  }
+
+  .addtask-modal .upload-box {
+    padding: 20px;
+    height: auto;
+  }
+
+  .addtask-modal .upload-icon {
+    width: 48px;
+    height: 44px;
+    margin-bottom: 16px;
+  }
+
+  .addtask-modal .upload-box p,
+  .addtask-modal .upload-box span {
+    font-size: 12px;
+  }
+
+  .addtask-modal .browse-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .addtask-modal .done-btn {
+    padding: 7px 20px;
+    font-size: 13px;
+  }
+}
+
+/* Prevent background scroll */
+body.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}

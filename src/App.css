@@ -1,0 +1,124 @@
+/* App.css */
+
+.section-badge {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  color: #ff6767;
+}
+
+.section-badge svg {
+  display: inline-block;
+}
+
+.section-badge-text {
+  color: #ff6767;
+  font-weight: bold;
+}
+
+.section-title {
+  font-family: Inter;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: 1.44px;
+}
+
+.products {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 40px;
+  justify-content: center;
+}
+
+.extreme {
+  color: #f21e1e;
+}
+.moderate {
+  color: #42ade2;
+}
+.low {
+  color: #05a301;
+}
+
+
+.task-icon.not-started {
+  stroke: #f25f5c; 
+}
+
+.task-icon.in-progress {
+  stroke: #3b82f6; /
+}
+
+.task-icon.complete {
+  stroke: #2ecc71; 
+}
+
+.not-started {
+  color: #F21E1E;
+  fill: #F21E1E;;
+}
+
+.in-progress {
+  color: #0225FF;
+  fill: #0225FF;
+}
+
+.complete {
+  color:#05A301;
+  fill: #05A301;
+}
+
+
+.created {
+  color: #a1a3ab;
+}
+
+/* Tablet (max-width: 991px) */
+@media (max-width: 991px) {
+  .section-badge {
+    font-size: 14px;
+    gap: 12px;
+  }
+
+  .section-title {
+    font-size: 28px;
+    line-height: 38px;
+    letter-spacing: 1.12px;
+    text-align: center;
+  }
+
+  .products {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Mobile (max-width: 576px) */
+@media (max-width: 576px) {
+  .section-badge {
+    font-size: 12px;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .section-title {
+    font-size: 22px;
+    line-height: 30px;
+    letter-spacing: 1px;
+    text-align: center;
+    padding: 0 1rem;
+  }
+
+  .products {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
