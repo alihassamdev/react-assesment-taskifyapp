@@ -134,38 +134,41 @@ const FlashSales = () => {
 
             {/* Products */}
             <div className="products">
-                {swiperReady && (
-                    <Swiper
-                        modules={[Navigation]}
-                        navigation={{
-                            prevEl: prevRef.current,
-                            nextEl: nextRef.current,
-                        }}
-                        slidesPerView={4}
-                        loop={true}
-                        spaceBetween={20}
-                        slidesPerGroup={1}
-                        breakpoints={{
-                            1200: { slidesPerView: 4, spaceBetween: 20 },
-                            991: { slidesPerView: 3, spaceBetween: 16 },
-                            768: { slidesPerView: 2, spaceBetween: 12 },
-                            576: { slidesPerView: 1, spaceBetween: 8 },
-                            0: { slidesPerView: 1, spaceBetween: 5 },
-                        }}
-                        onBeforeInit={(swiper) => {
-                            // Assign navigation elements
+                <Swiper
+                    modules={[Navigation]}
+                    slidesPerView={4}
+                    loop={true}
+                    spaceBetween={20}
+                    slidesPerGroup={1}
+                    breakpoints={{
+                        1200: { slidesPerView: 4, spaceBetween: 20 },
+                        991: { slidesPerView: 3, spaceBetween: 16 },
+                        768: { slidesPerView: 2, spaceBetween: 12 },
+                        576: { slidesPerView: 1, spaceBetween: 8 },
+                        0: { slidesPerView: 1, spaceBetween: 5 },
+                    }}
+                    onBeforeInit={(swiper) => {
+                        swiper.params.navigation.prevEl = prevRef.current;
+                        swiper.params.navigation.nextEl = nextRef.current;
+                    }}
+                    onSwiper={(swiper) => {
+                        // Manually re-init navigation after refs are ready
+                        setTimeout(() => {
                             swiper.params.navigation.prevEl = prevRef.current;
                             swiper.params.navigation.nextEl = nextRef.current;
+                            swiper.navigation.destroy();
                             swiper.navigation.init();
                             swiper.navigation.update();
-                        }}
-                    >
-                        {products.map((p) => (
-                            <SwiperSlide key={p.id}>
-                                <ProductCard product={p} showDiscount={true} />
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>)}
+                        });
+                    }}
+                >
+                    {products.map((p) => (
+                        <SwiperSlide key={p.id}>
+                            <ProductCard product={p} showDiscount={true} />
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+
             </div>
             <button className="view-products">View All Products</button>
 
