@@ -82,25 +82,27 @@
 }
 
 .swiper-pagination {
-  position: absolute;
-  bottom: 30px; /* Adjust bottom position to make sure the bullets are not hidden */
-  left: 50%;
-  transform: translateX(-50%); /* Center the bullets horizontally */
-  display: flex;
-  gap: 6px;
+  text-align: left;
+}
+
+.swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  left: 286px;
 }
 
 .swiper-pagination-bullet {
-  background: #777;
-  opacity: 1;
-  width: 10px;
-  height: 10px;
+  background: #ffffff;
+  opacity: 50%;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   transition: background 0.3s ease;
 }
 
 .swiper-pagination-bullet-active {
-  background: #f87171; /* red for active bullet */
+  background: #db4444;
+  border: 2px solid #fff;
+  opacity: 100%;
 }
 
 /* Responsive Styles */
@@ -143,6 +145,11 @@
 
   .swiper-pagination {
     bottom: 20px;
+    text-align: center;
+  }
+  .swiper-pagination-bullets,
+  .swiper-pagination-bullets.swiper-pagination-horizontal {
+    left: 0;
   }
 }
 
