@@ -114,6 +114,12 @@
   height: 18px;
 }
 
+.subscribe-box input:focus-visible,
+.subscribe-box input:focus {
+  border: none;
+  outline: none;
+}
+
 .download-app {
   display: flex;
   align-items: center;
@@ -147,7 +153,7 @@
 
 .social-icons {
   display: flex;
-  gap: 16px;
+  gap: 24px;
   margin-top: 24px;
 }
 
