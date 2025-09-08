@@ -1,14 +1,9 @@
 import React from 'react';
-import './TaskCard.css'; // We'll extract styles here if needed
+import './TaskCard.css';
+
+import { prettifyStatus, getStatusClass } from '@/utils/statusFormatter';
 
 const TaskCard = ({ task, onClick }) => {
-
-    const getStatusClass = (status) => {
-        if (status === 'notstarted') return 'not-started';
-        if (status === 'inprogress') return 'in-progress';
-        if (status === 'completed') return 'complete';
-        return '';
-    };
 
     const statusColors = {
         notstarted: "#F21E1E",   // red
@@ -33,7 +28,7 @@ const TaskCard = ({ task, onClick }) => {
                 {/* Right side content */}
                 <div className="task-content">
                     <div className="task-header">
-                        <h4 className="task-title">{task.title}</h4>
+                        <h4 className="task-title wrap-text">{task.title}</h4>
                         <svg width="16" height="6" viewBox="0 0 16 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.57444 4.64007C3.44398 4.64007 4.14888 3.82522 4.14888 2.82004C4.14888 1.81486 3.44398 1 2.57444 1C1.7049 1 1 1.81486 1 2.82004C1 3.82522 1.7049 4.64007 2.57444 4.64007Z" stroke="#A1A3AB" />
                             <path d="M8.08494 4.64007C8.95448 4.64007 9.65938 3.82522 9.65938 2.82004C9.65938 1.81486 8.95448 1 8.08494 1C7.2154 1 6.5105 1.81486 6.5105 2.82004C6.5105 3.82522 7.2154 4.64007 8.08494 4.64007Z" stroke="#A1A3AB" />
@@ -49,8 +44,8 @@ const TaskCard = ({ task, onClick }) => {
                     </div>
 
                     <div className="task-footer">
-                        <span>Priority: <span className={`priority ${task.priority.toLowerCase()}`}>{task.priority}</span></span>
-                        <span>Status: <span className={`status ${getStatusClass(task.status)}`}>{task.status}</span></span>
+                        <span>Priority: <span className={`priority ${task.priority.toLowerCase()}`}> {task.priority} </span></span>
+                        <span>Status: <span className={`status ${getStatusClass(task.status)}`}>{prettifyStatus(task.status)}</span></span>
                         <span className="created">Created on: {task.date}</span>
                     </div>
                 </div>

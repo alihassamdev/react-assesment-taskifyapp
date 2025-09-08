@@ -65,7 +65,9 @@
   max-height: 837px;
   overflow-y: auto;
 }
-
+.detail-content {
+  width: 60%;
+}
 .task-detail-card {
   display: flex;
   flex-direction: column;
@@ -78,6 +80,7 @@
   display: flex;
   gap: 15px;
   align-items: flex-end;
+  width: 100%;
 }
 
 .detail-image {

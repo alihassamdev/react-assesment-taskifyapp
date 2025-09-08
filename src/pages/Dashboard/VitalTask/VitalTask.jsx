@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router-dom';
 
 import '../MyTask/MyTask.css';
 import EditTask from '../EditTask/EditTask';
 import TaskCard from '@/components/Dashboard/Layout/ui/TaskCard/TaskCard';
+
+import { prettifyStatus, getStatusClass } from '@/utils/statusFormatter';
 
 const VitalTask = () => {
     const [selectedTask, setSelectedTask] = useState(null);
@@ -15,6 +17,19 @@ const VitalTask = () => {
     const extremeTasks = tasks.filter(
         task => task.priority === "extreme" && task.status !== "completed"
     );
+
+    // Automatically remove selected task if it no longer qualifies
+    useEffect(() => {
+        if (
+            selectedTask &&
+            !(
+                selectedTask.priority === 'extreme' &&
+                selectedTask.status !== 'completed'
+            )
+        ) {
+            setSelectedTask(null); // remove from right side
+        }
+    }, [tasks]);
 
     const handleDelete = async (taskId) => {
         await deleteTask(taskId);
@@ -65,14 +80,14 @@ const VitalTask = () => {
                                 alt="Task"
                             />
                             <div className="detail-content">
-                                <h4 className="detail-title">{selectedTask.title}</h4>
+                                <h4 className="detail-title wrap-text">{selectedTask.title}</h4>
                                 <p className="priority">Priority: <span className={selectedTask.priority.toLowerCase()}>{selectedTask.priority}</span></p>
-                                <p className="status">Status: <span className={selectedTask.status}>{selectedTask.status}</span></p>
+                                <p className="status">Status: <span className={`status ${getStatusClass(selectedTask.status)}`}>{prettifyStatus(selectedTask.status)}</span></p>
                                 <p className="created">Created on: {selectedTask.date}</p>
                             </div>
                         </div>
 
-                        <div className="task-description">
+                        <div className="task-description wrap-text">
                             <p>{selectedTask.description}</p>
                         </div>
 

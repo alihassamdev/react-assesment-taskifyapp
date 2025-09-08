@@ -117,17 +117,23 @@ const EditTask = ({ task, onClose, onSave }) => {
 
                             <label>Priority</label>
                             <div className="priority-group">
-                                {["extreme", "moderate", "low"].map((level) => (
-                                    <div className="priority-option" key={level}>
-                                        <span className={`dot ${level.toLowerCase()}-dot`} />
-                                        <span className="priority-text">{level}</span>
+                                {[
+                                    { label: "Extreme", value: "extreme", color: "#F21E1E" },
+                                    { label: "Moderate", value: "moderate", color: "#1E90FF" },
+                                    { label: "Low", value: "low", color: "#05A301" },
+                                ].map(({ label, value, color }) => (
+                                    <label className="priority-radio" key={value}>
+                                        <span className="dot" style={{ backgroundColor: color }}></span>
+                                        <span className="priority-label">{label}</span>
                                         <input
                                             type="radio"
                                             name="priority"
-                                            checked={formData.priority === level}
-                                            onChange={() => handlePriorityChange(level)}
+                                            value={value}
+                                            checked={formData.priority === value}
+                                            onChange={() => handlePriorityChange(value)}
                                         />
-                                    </div>
+                                        <span className="custom-radio"></span>
+                                    </label>
                                 ))}
                             </div>
                             {errors.priority && <p className="error-text">{errors.priority}</p>}
@@ -147,13 +153,6 @@ const EditTask = ({ task, onClose, onSave }) => {
                             <div className="upload-section">
                                 <label className="upload-label">Upload Image</label>
                                 <div className="upload-box">
-                                    <div className="upload-icon" />
-                                    <p>Drag & Drop files here</p>
-                                    <span>or</span>
-                                    <label className="browse-btn">
-                                        <input type="file" accept="image/*" hidden onChange={handleFileChange} />
-                                        Browse
-                                    </label>
                                     {formData.image && (
                                         <img
                                             src={formData.image}
@@ -167,6 +166,13 @@ const EditTask = ({ task, onClose, onSave }) => {
                                             }}
                                         />
                                     )}
+                                    <div className="upload-icon" />
+                                    <p>Drag & Drop files here</p>
+                                    <span>or</span>
+                                    <label className="browse-btn">
+                                        <input type="file" accept="image/*" hidden onChange={handleFileChange} />
+                                        Browse
+                                    </label>
                                 </div>
                                 {errors.image && <p className="error-text">{errors.image}</p>}
                             </div>

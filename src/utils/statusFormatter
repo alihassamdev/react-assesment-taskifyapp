@@ -1,0 +1,13 @@
+export function prettifyStatus(status) {
+    if (status === "notstarted") return "Not Started";
+    if (status === "inprogress") return "In Progress";
+    if (status === "completed") return "Completed";
+    return status;
+}
+
+export function getStatusClass(status) {
+    if (status === 'notstarted') return 'not-started';
+    if (status === 'inprogress') return 'in-progress';
+    if (status === 'completed') return 'complete';
+    return '';
+};

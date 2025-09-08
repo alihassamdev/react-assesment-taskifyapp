@@ -51,9 +51,14 @@ nav {
   cursor: pointer;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.active-link {
   background-color: #ffffff;
   color: #ff5c5c;
+}
+
+.nav-link:hover {
+  opacity: 70%;
 }
 
 .nav-link .icon {
@@ -73,8 +78,14 @@ nav {
   transition: fill 0.3s ease;
 }
 
-.nav-link:hover svg path {
+.nav-link:hover svg path,
+.active-link svg path {
   fill: #ff6767;
+}
+
+.viewtask-priority,
+.viewtask-status {
+  text-transform: capitalize;
 }
 
 .logout {

@@ -119,8 +119,8 @@ j.dashboard-content-section {
   gap: 17px;
   width: 100%;
   padding: 22px 24px 20px 26px;
-  border: 1px solid rgba(161, 163, 171, 0.63);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border: 1px solid #a1a3aba1;
+  box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 /* Left and right sections */
@@ -398,13 +398,15 @@ j.dashboard-content-section {
 /* Completed Task cards */
 .completed-task-card-item {
   display: flex;
-  gap: 20px;
+  gap: 9px;
   background: #fafbfc;
-  border-radius: 8px;
+  border-radius: 14px;
   padding: 15px 20px;
   margin-top: 15px;
-  box-shadow: 0 0 0 1px #e4eaf2;
-  align-items: flex-start;
+  border: 1px solid #a1a3ab;
+  color: #a1a3ab;
+  align-items: start;
+  justify-content: space-between;
 }
 
 .completed-task-title {
@@ -434,36 +436,59 @@ j.dashboard-content-section {
 
 .completed-task-content {
   flex: 1;
+  width: 100%;
+  max-width: 183px;
 }
 
 .completed-task-content h4 {
-  margin: 0 0 8px 0;
-  font-weight: 700;
-  font-size: 15px;
+  font-family: Inter;
+  font-weight: 600;
+  font-style: Semi Bold;
+  font-size: 16px;
+  color: #000;
+  line-height: 100%;
+  letter-spacing: 0%;
+  max-width: 210px;
+  margin-bottom: 13px;
 }
 
-.completed-task-content p {
-  margin: 0 0 5px 0;
-  font-size: 13px;
-  color: #4e586e;
+.completed-task-desc {
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #747474;
 }
 
 .status-completed {
-  font-size: 11px;
-  color: #2ecc71;
-  font-weight: 600;
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  margin-top: 13px;
 }
 
 .completed-task-content small {
-  font-size: 11px;
-  color: #999;
+  font-family: Inter;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 10px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #747474;
 }
 
 /* Completed task image */
+.completed-task-img {
+  align-self: center;
+}
+
 .completed-task-card-item img {
-  width: 60px;
-  height: 60px;
-  border-radius: 8px;
+  width: 88px;
+  height: 88px;
+  border-radius: 14px;
   object-fit: cover;
 }
 
@@ -494,4 +519,10 @@ j.dashboard-content-section {
   width: 12px;
   border-radius: 50%;
   display: inline-block;
+}
+
+.wrap-text {
+  white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }

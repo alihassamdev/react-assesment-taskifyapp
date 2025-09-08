@@ -6,6 +6,8 @@ import { ENDPOINTS } from '@/config/apiConfig';
 import EditTask from '../EditTask/EditTask';
 import TaskCard from '@/components/Dashboard/Layout/ui/TaskCard/TaskCard';
 
+import { prettifyStatus, getStatusClass } from '@/utils/statusFormatter';
+
 const MyTask = () => {
 
     const [selectedTask, setSelectedTask] = useState(null);
@@ -67,16 +69,16 @@ const MyTask = () => {
                                 src={selectedTask.image}
                                 alt="Task"
                             />
-                            <div className='detail-content'>
-                                <h4 className="detail-title">{selectedTask.title}</h4>
-                                <p className='priority'>Priority: <span className={selectedTask.priority.toLowerCase()}>{selectedTask.priority}</span></p>
-                                <p className='status'>Status: <span className={selectedTask.status}>{selectedTask.status}</span></p>
+                            <div className="detail-content ">
+                                <h4 className="detail-title wrap-text">{selectedTask.title}</h4>
+                                <p className="priority">Priority: <span className={selectedTask.priority.toLowerCase()}>{selectedTask.priority}</span></p>
+                                <p className="status">Status: <span className={`status ${getStatusClass(selectedTask.status)}`}>{prettifyStatus(selectedTask.status)}</span></p>
                                 <p className="created">Created on: {selectedTask.date}</p>
                             </div>
                         </div>
 
                         <div className="task-description">
-                            <p>
+                            <p className='wrap-text'>
                                 {selectedTask.description}
                             </p>
                         </div>

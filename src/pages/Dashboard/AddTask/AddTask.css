@@ -82,7 +82,6 @@
   font-size: 14px;
   line-height: 100%;
   margin-bottom: 9px;
-  display: block;
 }
 
 .addtask-modal input[type="text"],
@@ -109,8 +108,9 @@ textarea {
 /* === Priority === */
 .addtask-modal .priority-group {
   display: flex;
-  gap: 53px;
+  gap: 48px;
   align-items: center;
+  margin-top: 8px;
 }
 
 .priority-label {
@@ -132,12 +132,61 @@ textarea {
   color: #a1a3ab;
   margin-right: 10px;
 }
+
+.priority-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  font-size: 14px;
+  font-weight: 500;
+  color: #a1a3ab;
+  user-select: none;
+  padding-right: 24px;
+}
+
 .addtask-modal .dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   display: inline-block;
-  margin-right: 7px;
+}
+
+.priority-radio input[type="radio"] {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.priority-radio .custom-radio {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #a1a3ab;
+  border-radius: 4px;
+  display: inline-block;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.priority-radio input[type="radio"]:checked + .custom-radio {
+  background-color: #f24e1e;
+  border-color: #f24e1e;
+}
+
+.priority-radio input[type="radio"]:checked + .custom-radio::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 2px;
+}
+
+.priority-radio:hover .custom-radio {
+  border-color: #f24e1e;
 }
 
 /* === Upload === */

@@ -187,13 +187,15 @@ const Index = () => {
                                         {console.log(task.id)}
 
                                         <div className="task-status-circle green"></div>
-                                        <div className="completed-task-content">
-                                            <h4>{task.title}</h4>
-                                            <p>{task.description}</p>
-                                            <span className="status-completed">Status: Completed</span>
+                                        <div className="completed-task-content ">
+                                            <h4 className="wrap-text">{task.title}</h4>
+                                            <p className="completed-task-desc">{task.description}</p>
+                                            <p className="status-completed">Status: <span className="complete">Completed</span></p>
                                             <small>Completed on: {task.date}</small>
                                         </div>
-                                        <img src={task.image} alt={task.title} />
+                                        <div className="completed-task-img">
+                                            <img src={task.image} alt={task.title} />
+                                        </div>
                                     </div>
                                 ))
                             )}
