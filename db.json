@@ -19,6 +19,16 @@
       "password": "password789",
       "confirmPassword": "password789",
       "consent": true
+    },
+    {
+      "id": "user_vovgc5z4u",
+      "firstName": "studio",
+      "lastName": "93",
+      "userName": "studio93",
+      "email": "studio93@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "consent": true
     }
   ],
   "todos": [

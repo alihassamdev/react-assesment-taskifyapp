@@ -6,8 +6,14 @@
   background-image: url("@/assets/form-overlay.png");
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
-
+.signup-form-wrapper {
+  width: 100%;
+}
 .signup-container {
   max-width: 1236px;
   margin: 0 auto;
@@ -15,7 +21,6 @@
   border-radius: 10px;
   display: flex;
   justify-content: space-between;
-  min-height: 100vh;
   padding: 38px 47px 27px 73px;
   gap: 50px;
 }
@@ -163,7 +168,8 @@
   }
 
   .right-panel {
-    padding: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
 
   .signup-image {

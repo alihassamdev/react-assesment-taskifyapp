@@ -127,7 +127,7 @@ const Signup = () => {
 
     return (
         <div className='signup-page'>
-            <div className="signup-container">
+            <div className='signup-form-wrapper'>  <div className="signup-container">
                 <div className="left-panel">
                     <img src={signUpPoster} alt="Signup Illustration" className="signup-image" />
                 </div>
@@ -264,7 +264,8 @@ const Signup = () => {
                         </p>
                     </form>
                 </div>
-            </div>
+            </div></div>
+
         </div>
     );
 };

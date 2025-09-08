@@ -6,8 +6,14 @@
   background-image: url("@/assets/form-overlay.png");
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
-
+.signin-form-wrapper {
+  width: 100%;
+}
 .signin-container {
   max-width: 1236px;
   margin: 0 auto;
@@ -17,7 +23,6 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: start;
-  min-height: 100vh;
   padding: 61px 26px 99px 50px;
   gap: 50px;
 }
@@ -174,7 +179,8 @@
   }
 
   .right-panel {
-    padding: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
   }
   .signin-page .heading {
     text-align: center;
