@@ -197,24 +197,29 @@ const CategorySection = () => {
                         swiper.params.navigation.nextEl = nextRef.current;
                     }}
                     breakpoints={{
-                        1200: {
-                            slidesPerView: 6,
+                        0: {
+                            slidesPerView: 2,
+                            spaceBetween: 10,
+                        },
+                        576: {
+                            slidesPerView: 3,
+                            spaceBetween: 16,
+                        },
+                        768: {
+                            slidesPerView: 3,
                             spaceBetween: 20,
                         },
                         991: {
                             slidesPerView: 4,
+                            spaceBetween: 20,
                         },
-                        768: {
-                            slidesPerView: 3,
-                        },
-                        576: {
-                            slidesPerView: 2,
-                            spaceBetween: 0,
-                        },
-                        0: {
-                            slidesPerView: 1.5,
+                        1200: {
+                            slidesPerView: 6,
+                            spaceBetween: 24,
                         },
                     }}
+
+
                     className="category-swiper"
                 >
                     {categories.map((category, index) => (

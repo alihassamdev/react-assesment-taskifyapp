@@ -132,9 +132,13 @@
     gap: 16px;
   }
 
+  .category-slider-wrapper {
+    gap: 20px;
+  }
+
   .category-item {
     width: 100%;
-    max-width: 140px;
+    max-width: 100%;
     height: auto;
     padding: 16px;
   }
